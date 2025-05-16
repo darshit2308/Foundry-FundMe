@@ -1,0 +1,34 @@
+1) forge install smartcontractkit/chainlink-brownie-contracts
+2) cd lib/chainlink-brownie-contracts
+3) git checkout tags/1.3.0
+Step 1,2,3 are done to install all the AggregatorV3Interface files and more.
+After , update the remappings (@chainlink/contracts/ === lib/chainlink-brownie-contracts/contracts/)
+Now you can successfully perform : forge build 
+
+IMPORTANT -> 
+forge compile -> Creates executable files (Only checks of , if any errors are present)
+forge script -> Runs these executable files made when compiled
+
+4) forge test --match-test testPriceFeedVersionIsAccurate -vvv --fork-url $SEPOLIA_RPC_URL 
+Note: You need to specify your RPC url of sepolia in .env before.
+
+5) forge coverage --fork-url $SERPOLIA_RPC_URL -> Used to Give the amount of code which has been tested.
+
+6) forge test --fork-url $SEPOLIA_RPC_URL -> Run this command to check , if our code compiles correctly or not  , and passes all test or not?
+
+7) forge snapshot --match-test testWithdrawWithMultipleFunders -vvv --fork-url $SEPOLIA_RPC_URL -> For a given test, tells how much will the test cost !(In the file .gas-snapshot)
+
+8) forge inspect FundMe storageLayout -> Tells the exact storage layout of the contract 
+
+9) foundry-fund-me-f23 % forge script script/DeployFundMe.s.sol --rpc-url http://127.0.0.1:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --broadcast
+ -> This deployes the contract
+
+10) cast storage <Contract Address, which you get after running 9) command > <Storage index , like 2>
+Ex)  cast storage 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 2 -> this gives the address of the 2nd storage variable
+
+11) forge snapshot --fork-url $SEPOLIA_RPC_URL -> Gives the amount of gas needed by each function in test file
+
+12) git clone https://github.com/ChainAccelOrg/foundry-devops.git -> Used to ...
+
+SOME IMPORTANT GIT COMMANDS : 
+1) git init -b main -> This command initialise a git repository named MAIN , use this command only
